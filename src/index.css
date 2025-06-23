@@ -1,0 +1,662 @@
+/* Date Night Designer - React CSS */
+
+html, body { 
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    min-height: 100%;
+    background: linear-gradient(to bottom right, #f8fafc, #eff6ff);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-y: auto !important;
+}
+
+#root {
+    min-height: 100vh;
+    min-height: 100dvh; /* For better mobile support */
+}
+
+.fancy-font { 
+    font-family: 'Pacifico', cursive; 
+}
+
+.modal { 
+    transition: opacity 0.25s ease; 
+}
+
+/* --- Theme Definitions --- */
+/* Rose Petal (Default) */
+.theme-rose {
+    --bg-primary: #fff1f2; /* rose-50 */
+    --bg-secondary: #ffffff;
+    --text-primary: #881337; /* rose-900 */
+    --text-accent: #e11d48; /* rose-600 */
+    --border-color: #fecdd3; /* rose-200 */
+    --btn-bg: #f43f5e; /* rose-500 */
+    --btn-hover-bg: #e11d48; /* rose-600 */
+    --font-fancy: 'Pacifico', cursive;
+    --font-body: 'Poppins', sans-serif;
+}
+
+/* Midnight Sky */
+.theme-night {
+    --bg-primary: #1e293b; /* slate-800 */
+    --bg-secondary: #334155; /* slate-700 */
+    --text-primary: #f1f5f9; /* slate-100 */
+    --text-accent: #a5b4fc; /* indigo-300 */
+    --border-color: #475569; /* slate-600 */
+    --btn-bg: #6366f1; /* indigo-500 */
+    --btn-hover-bg: #4f46e5; /* indigo-600 */
+    --font-fancy: 'Playfair Display', serif;
+    --font-body: 'Nunito', sans-serif;
+}
+
+/* Minty Fresh */
+.theme-mint {
+    --bg-primary: #f0fdfa; /* teal-50 */
+    --bg-secondary: #ffffff;
+    --text-primary: #134e4a; /* teal-900 */
+    --text-accent: #14b8a6; /* teal-500 */
+    --border-color: #99f6e4; /* teal-200 */
+    --btn-bg: #14b8a6; /* teal-500 */
+    --btn-hover-bg: #0d9488; /* teal-600 */
+    --font-fancy: 'Nunito', sans-serif;
+    --font-body: 'Poppins', sans-serif;
+}
+
+/* Applying theme variables */
+.themed {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+}
+
+.themed .fancy-font { 
+    font-family: var(--font-fancy); 
+    color: var(--text-accent); 
+}
+
+.themed .bg-secondary { 
+    background-color: var(--bg-secondary); 
+}
+
+.themed .border-themed { 
+    border-color: var(--border-color); 
+}
+
+.themed .text-accent { 
+    color: var(--text-accent); 
+}
+
+.themed .btn-primary { 
+    background-color: var(--btn-bg); 
+}
+
+.themed .btn-primary:hover { 
+    background-color: var(--btn-hover-bg); 
+}
+
+.themed .input-themed { 
+    background-color: var(--bg-primary); 
+    border-color: var(--border-color); 
+}
+
+.themed .input-themed:focus { 
+    --tw-ring-color: var(--text-accent); 
+}
+
+/* === Floating Animation === */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* === Fade-in Animation === */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fade-in 0.6s ease-out;
+}
+
+/* === Enhanced Bounce Animation === */
+@keyframes bounce {
+    0%, 20%, 53%, 80%, 100% {
+        animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+        transform: translate3d(0,0,0);
+    }
+    40%, 43% {
+        animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+        transform: translate3d(0, -30px, 0);
+    }
+    70% {
+        animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+        transform: translate3d(0, -15px, 0);
+    }
+    90% {
+        transform: translate3d(0,-4px,0);
+    }
+}
+
+.animate-bounce {
+    animation: bounce 2s infinite;
+}
+
+/* === Pulse Animation === */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: .5;
+    }
+}
+
+.animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* === Card Hover Effects === */
+.themed:hover {
+    transform: translateY(-2px);
+}
+
+/* === Responsive Text Scaling === */
+@media (max-width: 768px) {
+    .fancy-font {
+        font-size: 0.9em;
+    }
+}
+
+/* === Enhanced Fade Transitions === */
+@keyframes fade-out {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-out {
+    animation: fade-out 0.3s ease-in forwards;
+}
+
+.animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out;
+}
+
+/* === Smooth Transition Class === */
+.transition-content {
+    transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+}
+
+/* === Progress Dots Enhanced Animation === */
+.progress-dot {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: scale(1);
+}
+
+.progress-dot.active {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 3px rgba(var(--btn-bg), 0.3);
+}
+
+.progress-dot.completed {
+    transform: scale(1.1);
+}
+
+/* === Staggered Animation Effects === */
+.stagger-1 {
+    animation-delay: 0.1s;
+}
+
+.stagger-2 {
+    animation-delay: 0.2s;
+}
+
+.stagger-3 {
+    animation-delay: 0.3s;
+}
+
+/* === Enhanced Step Transition === */
+@keyframes step-transition {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateY(15px) scale(0.98);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.animate-step-transition {
+    animation: step-transition 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* === Smooth Content Transition === */
+.content-transition-enter {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.content-transition-active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* === Grid Card System === */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.reveal-card {
+    aspect-ratio: 1;
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.reveal-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.reveal-card.opened {
+    background: white;
+    border: 2px solid var(--btn-bg);
+    transform: scale(1.05);
+}
+
+.reveal-card.closed {
+    background: linear-gradient(135deg, var(--btn-bg), var(--btn-hover-bg));
+}
+
+.card-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+/* === Card Opening Animation === */
+@keyframes card-flip {
+    0% {
+        transform: perspective(1000px) rotateY(0deg);
+    }
+    50% {
+        transform: perspective(1000px) rotateY(90deg);
+    }
+    100% {
+        transform: perspective(1000px) rotateY(0deg);
+    }
+}
+
+.card-opening {
+    animation: card-flip 0.8s ease-in-out;
+}
+
+/* === Completion Animation === */
+@keyframes completion-celebration {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.completion-animation {
+    animation: completion-celebration 0.6s ease-in-out;
+}
+
+/* === Final Card Entrance === */
+@keyframes final-card-entrance {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) rotateY(-30deg);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(0.9) rotateY(-15deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotateY(0deg);
+    }
+}
+
+.final-card-entrance {
+    animation: final-card-entrance 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* === Responsive Grid === */
+@media (max-width: 768px) {
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    
+    .reveal-card {
+        border-radius: 1rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .card-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* === Full Screen Grid Layout === */
+.invitation-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: visible;
+    scroll-behavior: smooth;
+}
+
+.invitation-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 0.75rem;
+    padding: 1rem;
+    height: 60vh; /* Fixed height for grid area */
+    min-height: 400px; /* Minimum height to ensure visibility */
+}
+
+@media (min-width: 768px) {
+    .invitation-grid {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 1.5rem;
+        padding: 1.5rem;
+        height: 50vh; /* Smaller height on larger screens */
+        min-height: 300px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .invitation-grid {
+        gap: 2rem;
+        padding: 2rem;
+        max-width: 1400px;
+        margin: 0 auto;
+        height: 55vh; /* Adjust for larger screens */
+        min-height: 350px;
+    }
+}
+
+.invitation-card {
+    min-height: 120px;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+@media (min-width: 768px) {
+    .invitation-card {
+        min-height: 150px;
+        border-radius: 1.5rem;
+        padding: 1.5rem;
+    }
+}
+
+/* === Final Invitation Button === */
+.final-invitation-btn {
+    background: linear-gradient(45deg, var(--btn-bg), var(--btn-hover-bg));
+    transform: perspective(1000px) rotateX(0deg);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.final-invitation-btn:hover {
+    background: linear-gradient(45deg, var(--btn-hover-bg), var(--btn-bg));
+    transform: perspective(1000px) rotateX(-5deg) translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.final-invitation-btn:active {
+    transform: perspective(1000px) rotateX(-2deg) translateY(-2px);
+}
+
+/* === Completion Celebration === */
+@keyframes celebration-glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(var(--btn-bg), 0.5);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(var(--btn-bg), 0.8);
+    }
+}
+
+.celebration-glow {
+    animation: celebration-glow 2s ease-in-out infinite;
+}
+
+/* === Realistic Card Styling === */
+.real-card {
+    /* Multiple shadow layers for depth */
+    box-shadow: 
+        /* Main card shadow */
+        0 8px 32px rgba(0, 0, 0, 0.12),
+        /* Secondary depth shadow */
+        0 4px 16px rgba(0, 0, 0, 0.08),
+        /* Edge highlight */
+        inset 0 1px 0 rgba(255, 255, 255, 0.8),
+        /* Subtle inner shadow for embossed effect */
+        inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+    
+    /* Paper-like background texture */
+    background-image: 
+        /* Subtle paper texture */
+        radial-gradient(circle at 1px 1px, rgba(0,0,0,0.02) 1px, transparent 0),
+        /* Additional texture layer */
+        linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(255,255,255,0.1) 25%, transparent 25%);
+    background-size: 20px 20px, 40px 40px, 40px 40px;
+    
+    /* Card material properties */
+    backdrop-filter: blur(1px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    
+    /* 3D perspective */
+    transform-style: preserve-3d;
+    
+    /* Smooth transitions */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.real-card:hover {
+    /* Enhanced hover effect */
+    box-shadow: 
+        0 16px 48px rgba(0, 0, 0, 0.15),
+        0 8px 24px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.08);
+    
+    transform: translateY(-4px) rotateX(2deg);
+}
+
+/* Card border decorations */
+.card-decoration {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.card-decoration::before,
+.card-decoration::after {
+    content: '';
+    position: absolute;
+    background: linear-gradient(45deg, var(--text-accent), transparent);
+    opacity: 0.3;
+}
+
+/* Corner flourishes */
+.corner-flourish {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border: 3px solid;
+    border-color: var(--text-accent);
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.corner-flourish::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+    border: 1px solid;
+    border-color: var(--text-accent);
+    opacity: 0.5;
+}
+
+/* Embossed text effect */
+.embossed-text {
+    text-shadow: 
+        0 1px 0 rgba(255, 255, 255, 0.8),
+        0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Gold foil effect for special elements */
+.gold-foil {
+    background: linear-gradient(135deg, #ffd700, #ffed4a, #fbbf24);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+/* Paper edge effect */
+.paper-edge {
+    position: relative;
+}
+
+.paper-edge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(0,0,0,0.1) 20%, 
+        rgba(0,0,0,0.1) 80%, 
+        transparent 100%);
+    z-index: 2;
+}
+
+/* Vintage card styling */
+.vintage-card {
+    background: 
+        /* Aged paper texture */
+        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(120, 119, 198, 0.15) 0%, transparent 50%),
+        linear-gradient(135deg, #f8f9fa 0%, #f1f3f4 100%);
+    
+    /* Vintage paper effect */
+    box-shadow: 
+        inset 0 0 60px rgba(0, 0, 0, 0.05),
+        0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Raised button effect */
+.raised-btn {
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    transform: translateY(0);
+    transition: all 0.2s ease;
+}
+
+.raised-btn:hover {
+    box-shadow: 
+        0 6px 12px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.raised-btn:active {
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    transform: translateY(0);
+}
+
+/* === Enhanced existing styles === */
