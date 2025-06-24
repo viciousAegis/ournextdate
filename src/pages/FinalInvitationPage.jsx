@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import FinalInvitationCard from '../components/FinalInvitationCard';
 import LoadingMessage from '../components/LoadingMessage';
+import Footer from '../components/Footer';
 import { getInvitation, updateRsvp } from '../utils/supabase';
 import { decryptText } from '../utils/encryption';
 
@@ -132,20 +133,25 @@ const FinalInvitationPage = () => {
   }
 
   return (
-    <div className="w-full animate-fade-in">
-      {/* Final Invitation Card */}
-      <FinalInvitationCard invitation={invitation} onRsvp={handleRsvp} />
-      
-      {/* Subtle Create Button */}
-      <div className="fixed bottom-6 left-6 z-40">
-        <button
-          onClick={() => navigate('/')}
-          className="px-4 py-2 bg-white/90 backdrop-blur-sm hover:bg-white text-gray-700 hover:text-gray-900 text-sm font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200/50 hover:border-gray-300"
-          title="Create your own invitation"
-        >
-          ✨ Create Your Own
-        </button>
+    <div className="min-h-screen flex flex-col">
+      <div className="flex-1 animate-fade-in">
+        {/* Final Invitation Card */}
+        <FinalInvitationCard invitation={invitation} onRsvp={handleRsvp} />
+        
+        {/* Subtle Create Button */}
+        <div className="fixed bottom-6 left-6 z-40">
+          <button
+            onClick={() => navigate('/')}
+            className="px-4 py-2 bg-white/90 backdrop-blur-sm hover:bg-white text-gray-700 hover:text-gray-900 text-sm font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200/50 hover:border-gray-300"
+            title="Create your own invitation"
+          >
+            ✨ Create Your Own
+          </button>
+        </div>
       </div>
+      
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };

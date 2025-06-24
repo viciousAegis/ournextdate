@@ -4,6 +4,7 @@ import CreatorForm from '../components/CreatorForm';
 import FinalInvitationCard from '../components/FinalInvitationCard';
 import LinkModal from '../components/LinkModal';
 import LoadingMessage from '../components/LoadingMessage';
+import Footer from '../components/Footer';
 import { createInvitation, supabase } from '../utils/supabase';
 import { encryptText, decryptText, formatDateTimeLocal } from '../utils/encryption';
 import { invitationThemes, getDefaultTheme } from '../config/themes';
@@ -257,72 +258,55 @@ const CreatorPageWithPreview = () => {
   }
 
   return (
-    <div className="flex flex-col lg:flex-row min-h-screen bg-gray-50">
-      {/* Creator Form - Top on mobile, Left on desktop */}
-      <div className="w-full lg:w-1/3 flex items-center lg:h-screen overflow-y-auto">
-        <div className="w-full p-4">
-          {showThemes ? (
-            <ThemesView />
-          ) : (
-            <>
-              {/* Themes Toggle Button */}
-              <div className="px-4 pt-4">
-                <button
-                  onClick={toggleThemesView}
-                  className="w-full bg-slate-600 hover:bg-slate-700 text-white font-medium py-3 px-4 rounded-lg transition-all duration-300 mb-4"
-                >
-                  🎨 Themes
-                </button>
-              </div>
-              
-              <CreatorForm 
-                onSubmit={handleFormSubmit}
-                isLoading={isSubmitting}
-                formData={formData}
-                setFormData={setFormData}
-                theme={theme}
-                setTheme={setTheme}
-                hideThemeSelector={true}
-              />
-            </>
-          )}
-        </div>
-      </div>
-
-      {/* Preview - Bottom on mobile, Right on desktop */}
-      <div className="w-full lg:w-2/3 flex items-center lg:h-screen min-h-screen lg:min-h-0 bg-gray-50">
-        <FinalInvitationCard 
-          invitation={{
-            ...formData,
-            theme: theme,
-            rsvpStatus: 'pending'
-          }}
-          isPreview={true}
-        />
-      </div>
-
-      {/* Demo Button and Status */}
-      {/* <div className="fixed top-2 right-2 sm:top-4 sm:right-4 z-50 flex flex-col gap-2">
-        <button
-          onClick={handleViewDemo}
-          className="px-3 py-2 sm:px-4 sm:py-2 text-sm sm:text-base bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-all duration-300 hover:scale-105 shadow-lg"
-        >
-          View Demo
-        </button>
-        
-        <div className={`px-3 py-1 rounded-full text-xs font-medium text-center ${
-          isSupabaseConnected ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
-        }`}>
-          {isSupabaseConnected ? '🟢 Supabase Connected' : '🟡 Demo Mode'}
-        </div>
-        
-        {!isSupabaseConnected && (
-          <div className="px-3 py-2 bg-blue-100 text-blue-800 rounded-lg text-xs max-w-xs">
-            <div className="font-medium">🚀 Setup Supabase</div>
-            <div>See console for instructions</div>
+    <div className="flex flex-col min-h-screen bg-gray-50 pb-20">
+      {/* Main Content */}
+      <div className="flex flex-col lg:flex-row flex-1">
+        {/* Creator Form - Top on mobile, Left on desktop */}
+        <div className="w-full lg:w-1/3 flex items-center lg:h-screen overflow-y-auto">
+          <div className="w-full p-4">
+            {showThemes ? (
+              <ThemesView />
+            ) : (
+              <>
+                {/* Themes Toggle Button */}
+                <div className="px-4 pt-4">
+                  <button
+                    onClick={toggleThemesView}
+                    className="w-full bg-slate-600 hover:bg-slate-700 text-white font-medium py-3 px-4 rounded-lg transition-all duration-300 mb-4"
+                  >
+                    🎨 Themes
+                  </button>
+                </div>
+                
+                <CreatorForm 
+                  onSubmit={handleFormSubmit}
+                  isLoading={isSubmitting}
+                  formData={formData}
+                  setFormData={setFormData}
+                  theme={theme}
+                  setTheme={setTheme}
+                  hideThemeSelector={true}
+                />
+              </>
+            )}
           </div>
-        )}
-      </div> */}
+        </div>
+
+        {/* Preview - Bottom on mobile, Right on desktop */}
+        <div className="w-full lg:w-2/3 flex items-center lg:h-screen min-h-screen lg:min-h-0 bg-gray-50">
+          <FinalInvitationCard 
+            invitation={{
+              ...formData,
+              theme: theme,
+              rsvpStatus: 'pending'
+            }}
+            isPreview={true}
+          />
+        </div>
+      </div>
+
+      {/* Footer */}
+      <Footer />
 
       {/* Link Modal */}
       {showLinkModal && invitationUrl && (
