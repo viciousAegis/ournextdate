@@ -3,6 +3,7 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import FinalInvitationCard from '../components/FinalInvitationCard';
 import LoadingMessage from '../components/LoadingMessage';
 import { getInvitation, updateRsvp } from '../utils/supabase';
+import { decryptText } from '../utils/encryption';
 
 const FinalInvitationPage = () => {
   const [searchParams] = useSearchParams();
@@ -45,8 +46,20 @@ const FinalInvitationPage = () => {
             console.log('💾 Loading demo invitation from localStorage');
             const storedInvitation = localStorage.getItem(`invitation-${id}`);
             if (storedInvitation) {
-              const invitation = JSON.parse(storedInvitation);
-              setInvitation(invitation);
+              const encryptedInvitation = JSON.parse(storedInvitation);
+              
+              // Decrypt sensitive fields
+              const decryptedInvitation = {
+                ...encryptedInvitation,
+                to: decryptText(encryptedInvitation.to),
+                from: decryptText(encryptedInvitation.from),
+                event: decryptText(encryptedInvitation.event),
+                message: decryptText(encryptedInvitation.message),
+                youtubeUrl: encryptedInvitation.youtubeUrl ? decryptText(encryptedInvitation.youtubeUrl) : null
+              };
+              
+              console.log('🔓 Demo invitation decrypted');
+              setInvitation(decryptedInvitation);
             } else {
               throw new Error('Demo invitation not found in storage');
             }
@@ -97,12 +110,6 @@ const FinalInvitationPage = () => {
     }
   };
 
-  const handleBackToCards = () => {
-    const currentParams = new URLSearchParams(searchParams);
-    currentParams.delete('final');
-    navigate(`/invitation?${currentParams.toString()}`);
-  };
-
   if (loading) {
     return <LoadingMessage message={message} />;
   }
@@ -126,18 +133,19 @@ const FinalInvitationPage = () => {
 
   return (
     <div className="w-full animate-fade-in">
-      {/* Back Button */}
-      <div className="fixed top-4 left-4 z-50">
-        <button
-          onClick={handleBackToCards}
-          className="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg transition-all duration-300 hover:scale-105 shadow-lg"
-        >
-          ← Back to Cards
-        </button>
-      </div>
-
       {/* Final Invitation Card */}
       <FinalInvitationCard invitation={invitation} onRsvp={handleRsvp} />
+      
+      {/* Subtle Create Button */}
+      <div className="fixed bottom-6 left-6 z-40">
+        <button
+          onClick={() => navigate('/')}
+          className="px-4 py-2 bg-white/90 backdrop-blur-sm hover:bg-white text-gray-700 hover:text-gray-900 text-sm font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200/50 hover:border-gray-300"
+          title="Create your own invitation"
+        >
+          ✨ Create Your Own
+        </button>
+      </div>
     </div>
   );
 };

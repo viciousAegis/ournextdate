@@ -41,7 +41,7 @@ const LinkModal = ({ invitationUrl, onClose }) => {
             </svg>
           </div>
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Invitation Created!</h2>
-          <p className="text-gray-600">Your date night invitation is ready to share</p>
+          <p className="text-gray-600">Your OurNextDate invitation is ready to share</p>
         </div>
 
         {/* Link section */}
@@ -91,7 +91,7 @@ const LinkModal = ({ invitationUrl, onClose }) => {
             💡 Tip: Send this link to your special someone!
           </p>
           <p className="text-xs text-orange-600 mt-1">
-            ⏰ This link expires in 24 hours
+            ⏰ This link expires in 7 days.
           </p>
         </div>
       </div>

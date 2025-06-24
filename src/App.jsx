@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CreatorPageWithPreview from './pages/CreatorPageWithPreview';
-import InvitationPage from './pages/InvitationPageNew';
+import InvitationPage from './pages/InvitationPageRedirect';
 import FinalInvitationPage from './pages/FinalInvitationPage';
 
 function App() {

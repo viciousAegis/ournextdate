@@ -4,6 +4,7 @@ import InvitationView from '../components/InvitationView';
 import FinalInvitationCard from '../components/FinalInvitationCard';
 import LoadingMessage from '../components/LoadingMessage';
 import { getInvitation, updateRsvp } from '../utils/supabase';
+import { decryptText } from '../utils/encryption';
 
 const InvitationPage = () => {
   const [searchParams] = useSearchParams();

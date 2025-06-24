@@ -14,13 +14,6 @@ const firebaseConfig = {
 };
 
 // Utility functions
-const parseYoutubeUrl = (url) => {
-  if (!url) return null;
-  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-  const match = url.match(regExp);
-  return (match && match[2].length === 11) ? match[2] : null;
-};
-
 // Database operations
 const createInvitation = async (db, data) => {
   const docRef = await addDoc(collection(db, 'invitations'), {
@@ -96,7 +89,6 @@ const CreatorPage = () => {
       <CreatorForm 
         onSubmit={handleCreateInvitation} 
         isLoading={isSubmitting}
-        parseYoutubeUrl={parseYoutubeUrl}
       />
       
       {/* Demo Button */}

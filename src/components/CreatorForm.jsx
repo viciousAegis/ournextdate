@@ -1,7 +1,16 @@
 import React, { useState } from 'react';
 import ThemeSelector from './ThemeSelector';
+import { formatDateTimeLocal } from '../utils/encryption';
 
-const CreatorForm = ({ onSubmit, isLoading, parseYoutubeUrl, formData, setFormData, theme, setTheme, onFormChange }) => {
+const CreatorForm = ({ onSubmit, isLoading, formData, setFormData, theme, setTheme, onFormChange, hideThemeSelector = false }) => {
+  // Get tomorrow's date at 7 PM as placeholder, preserving timezone
+  const getTomorrowDateTime = () => {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(19, 0, 0, 0); // 7:00 PM in local timezone
+    return formatDateTimeLocal(tomorrow);
+  };
+
   const handleInputChange = (e) => {
     const newFormData = {
       ...formData,
@@ -60,14 +69,21 @@ const CreatorForm = ({ onSubmit, isLoading, parseYoutubeUrl, formData, setFormDa
 
   return (
     <div className="px-4 py-8">
-      <div className={`themed theme-${theme} p-6 rounded-2xl shadow-lg transition-all duration-500 border border-gray-100 bg-white`}>
+      <div className="relative">
+        {/* Solid shadow */}
+        <div className="absolute inset-0 bg-gray-800 rounded-2xl transform translate-x-2 translate-y-2 opacity-20"></div>
+        
+        {/* Main form card */}
+        <div className={`relative themed theme-${theme} p-6 rounded-2xl shadow-2xl transition-all duration-500 border-4 border-white bg-white`}>
         <div className="text-center mb-6">
-          <h1 className="fancy-font text-3xl mb-2">Date Night</h1>
+          <h1 className="fancy-font text-3xl mb-2">OurNextDate</h1>
           <p className="text-base opacity-80">Create Your Invitation</p>
         </div>
         
         <form onSubmit={onSubmit} className="space-y-4">
-          <ThemeSelector currentTheme={theme} onThemeChange={handleThemeChange} />
+          {!hideThemeSelector && (
+            <ThemeSelector currentTheme={theme} onThemeChange={handleThemeChange} />
+          )}
           
           <div className="grid grid-cols-2 gap-3">
             <input
@@ -94,7 +110,7 @@ const CreatorForm = ({ onSubmit, isLoading, parseYoutubeUrl, formData, setFormDa
           <input
             type="datetime-local"
             name="time"
-            value={formData.time}
+            value={formData.time || getTomorrowDateTime()}
             onChange={handleInputChange}
             className="w-full p-3 bg-white border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm text-gray-700"
             required
@@ -143,34 +159,23 @@ const CreatorForm = ({ onSubmit, isLoading, parseYoutubeUrl, formData, setFormDa
             </div>
           </div>
           
-          <input
-            type="text"
-            name="youtube"
-            value={formData.youtube}
-            onChange={handleInputChange}
-            className="w-full p-3 bg-white border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm text-gray-700"
-            placeholder="YouTube URL (optional)"
-          />
-          
-          <div className="flex gap-3">
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-300 disabled:opacity-50"
-            >
-              {isLoading ? 'Creating...' : 'Create Invitation'}
-            </button>
-            
-            <button
-              type="button"
-              onClick={() => window.open('?demo=true', '_blank')}
-              className="px-6 bg-gray-500 hover:bg-gray-600 text-white font-medium py-3 rounded-lg transition-all duration-300"
-              title="Preview invitation"
-            >
-              👁️ Preview
-            </button>
+          <div className="flex gap-4 pt-2">
+            <div className="relative flex-1">
+              {/* Submit button shadow */}
+              <div className="absolute inset-0 bg-gray-700 rounded-lg transform translate-x-1 translate-y-1 opacity-30"></div>
+              
+              {/* Submit button */}
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="relative w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 disabled:opacity-50 shadow-lg text-lg"
+              >
+                {isLoading ? 'Creating...' : 'Create Invitation'}
+              </button>
+            </div>
           </div>
         </form>
+        </div>
       </div>
     </div>
   );

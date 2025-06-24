@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
+import { encryptInvitation, decryptInvitation, encryptFormData } from './encryption.js'
 
 // Supabase configuration from environment variables
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
@@ -16,15 +17,19 @@ export const supabase = supabaseUrl && supabaseKey ? createClient(supabaseUrl, s
 export const createInvitation = async (invitationData) => {
   try {
     console.log('💾 Creating invitation in Supabase...')
-    console.log('📊 Data to save:', invitationData)
+    console.log('📊 Data to save (before encryption):', invitationData)
+    
+    // Encrypt sensitive data before storing (now async)
+    const encryptedData = await encryptFormData(invitationData);
+    console.log('🔒 Data encrypted for storage')
     
     const { data, error } = await supabase
       .from('invitations')
       .insert([{
-        ...invitationData,
+        ...encryptedData,
         rsvp_status: 'pending',
         created_at: new Date().toISOString(),
-        expires_at: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString() // 24 hours
+        expires_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString() // 7 days
       }])
       .select()
     
@@ -33,7 +38,7 @@ export const createInvitation = async (invitationData) => {
       throw error
     }
     
-    console.log('✅ Invitation created successfully:', data[0])
+    console.log('✅ Invitation created successfully')
     return data[0]
   } catch (error) {
     console.error('💥 Error creating invitation:', error)
@@ -64,25 +69,29 @@ export const getInvitation = async (id) => {
       throw new Error('This invitation has expired')
     }
     
-    console.log('✅ Invitation fetched successfully:', data)
+    console.log('✅ Invitation fetched successfully')
+    
+    // Decrypt sensitive data after fetching (now async)
+    const decryptedData = await decryptInvitation(data);
+    console.log('🔓 Data decrypted')
     
     // Map Supabase field names to component-expected field names
     const mappedData = {
-      id: data.id,
-      to: data.to_name,
-      from: data.from_name,
-      time: data.event_time,
-      event: data.event_description,
-      message: data.message,
-      theme: data.theme,
-      youtubeUrl: data.youtube_url,
-      youtubeVideoId: data.youtube_video_id,
-      rsvpStatus: data.rsvp_status,
-      createdAt: data.created_at,
-      expiresAt: data.expires_at
+      id: decryptedData.id,
+      to: decryptedData.to_name,
+      from: decryptedData.from_name,
+      time: decryptedData.event_time,
+      event: decryptedData.event_description,
+      message: decryptedData.message,
+      theme: decryptedData.theme,
+      youtubeUrl: decryptedData.youtube_url,
+      youtubeVideoId: decryptedData.youtube_video_id,
+      rsvpStatus: decryptedData.rsvp_status,
+      createdAt: decryptedData.created_at,
+      expiresAt: decryptedData.expires_at
     }
     
-    console.log('🔄 Mapped invitation data:', mappedData)
+    console.log('🔄 Mapped invitation data ready for display')
     return mappedData
   } catch (error) {
     console.error('💥 Error fetching invitation:', error)

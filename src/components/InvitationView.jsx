@@ -56,7 +56,7 @@ const InvitationView = ({ invitation, onRevealComplete, onRsvp }) => {
       title: '💕',
       subtitle: 'What\'s the occasion?',
       content: {
-        title: 'Date Night Invitation',
+        title: 'OurNextDate Invitation',
         description: 'You\'re invited to something special!',
         icon: '💕'
       }
@@ -101,7 +101,7 @@ const InvitationView = ({ invitation, onRevealComplete, onRsvp }) => {
           Your Invitation Awaits
         </h1>
         <p className="text-sm md:text-base opacity-80 mb-3">
-          Open each card to reveal your special date night
+          Open each card to reveal your special OurNextDate
         </p>
         
         {/* Progress indicator */}
@@ -123,18 +123,22 @@ const InvitationView = ({ invitation, onRevealComplete, onRsvp }) => {
           const isOpened = openedCards.has(card.id);
           
           return (
-            <div
-              key={card.id}
-              className={`
-                invitation-card shadow-lg transform transition-all duration-700 hover:scale-105
-                ${isOpened 
-                  ? 'bg-white border-2 border-accent' 
-                  : 'bg-gradient-to-br from-accent/20 to-accent/40 hover:from-accent/30 hover:to-accent/50'
-                }
-                ${isTransitioning ? 'pointer-events-none' : ''}
-              `}
-              onClick={() => !isOpened && handleCardOpen(card.id)}
-            >
+            <div key={card.id} className="relative">
+              {/* Solid shadow */}
+              <div className="absolute inset-0 bg-gray-800 rounded-2xl transform translate-x-1 translate-y-1 opacity-20"></div>
+              
+              {/* Card */}
+              <div
+                className={`
+                  relative invitation-card shadow-2xl transform transition-all duration-700 hover:scale-105
+                  ${isOpened 
+                    ? 'bg-white border-4 border-accent' 
+                    : 'bg-gradient-to-br from-accent/20 to-accent/40 hover:from-accent/30 hover:to-accent/50'
+                  }
+                  ${isTransitioning ? 'pointer-events-none' : ''}
+                `}
+                onClick={() => !isOpened && handleCardOpen(card.id)}
+              >
               {!isOpened ? (
                 // Closed card state
                 <>
@@ -162,6 +166,7 @@ const InvitationView = ({ invitation, onRevealComplete, onRsvp }) => {
                   </p>
                 </div>
               )}
+              </div>
             </div>
           );
         })}

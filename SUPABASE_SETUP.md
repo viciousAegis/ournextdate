@@ -67,7 +67,7 @@ Your project is already configured with Supabase! Here's what's been implemented
 ### Invitation Flow
 1. **Create**: User fills form → Data saved to Supabase → Short link generated
 2. **Share**: Generated link: `/invitation?id=uuid`
-3. **View**: Recipient opens link → Data fetched from Supabase
+3. **View**: Recipient opens link → Redirected directly to final invitation
 4. **RSVP**: Recipient responds → Status updated in Supabase
 5. **Expire**: Links automatically expire after 24 hours
 

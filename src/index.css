@@ -1,4 +1,6 @@
 /* Date Night Designer - React CSS */
+/* Import Google Fonts (add all you need) */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Lato:wght@400;700&family=Dancing+Script:wght@400..700&family=Montserrat:wght@400;700&family=Merriweather&family=Georgia&family=Lobster&family=Roboto&family=Amatic+SC:wght@700&family=Nunito&family=Cutive+Mono&family=Source+Sans+Pro&family=Righteous&family=Open+Sans&family=Cinzel&family=Josefin+Sans&family=Patrick+Hand&family=Quicksand&family=Architects+Daughter&family=Work+Sans&display=swap');
 
 html, body { 
     font-family: 'Poppins', sans-serif;
@@ -31,43 +33,177 @@ body {
 }
 
 /* --- Theme Definitions --- */
-/* Rose Petal (Default) */
-.theme-rose {
-    --bg-primary: #fff1f2; /* rose-50 */
+
+/* Sunset Glow */
+.theme-sunset {
+    --bg-primary: #FFF8F0;      /* warm cream white */
     --bg-secondary: #ffffff;
-    --text-primary: #881337; /* rose-900 */
-    --text-accent: #e11d48; /* rose-600 */
-    --border-color: #fecdd3; /* rose-200 */
-    --btn-bg: #f43f5e; /* rose-500 */
-    --btn-hover-bg: #e11d48; /* rose-600 */
+    --text-primary: #2D1B33;    /* deep purple */
+    --text-accent: #FF6B8A;     /* coral pink */
+    --border-color: #FFE5CC;    /* peach cream */
+    --btn-bg: #FF6B8A;          /* coral pink */
+    --btn-hover-bg: #FF9F40;    /* orange */
     --font-fancy: 'Pacifico', cursive;
     --font-body: 'Poppins', sans-serif;
+    --shadow: #FF9F40;          /* orange */
 }
 
-/* Midnight Sky */
-.theme-night {
-    --bg-primary: #1e293b; /* slate-800 */
-    --bg-secondary: #334155; /* slate-700 */
-    --text-primary: #f1f5f9; /* slate-100 */
-    --text-accent: #a5b4fc; /* indigo-300 */
-    --border-color: #475569; /* slate-600 */
-    --btn-bg: #6366f1; /* indigo-500 */
-    --btn-hover-bg: #4f46e5; /* indigo-600 */
-    --font-fancy: 'Playfair Display', serif;
-    --font-body: 'Nunito', sans-serif;
-}
-
-/* Minty Fresh */
-.theme-mint {
-    --bg-primary: #f0fdfa; /* teal-50 */
+/* Modern Romance */
+.theme-modern-romance {
+    --bg-primary: #FBEAEB;      /* pastel pink */
     --bg-secondary: #ffffff;
-    --text-primary: #134e4a; /* teal-900 */
-    --text-accent: #14b8a6; /* teal-500 */
-    --border-color: #99f6e4; /* teal-200 */
-    --btn-bg: #14b8a6; /* teal-500 */
-    --btn-hover-bg: #0d9488; /* teal-600 */
-    --font-fancy: 'Nunito', sans-serif;
-    --font-body: 'Poppins', sans-serif;
+    --text-primary: #2F3C7E;    /* dark blue */
+    --text-accent: #EA738D;     /* bubblegum pink */
+    --border-color: #CADCFC;    /* light blue */
+    --btn-bg: #EA738D;          /* bubblegum pink */
+    --btn-hover-bg: #E55A7B;    /* darker pink */
+    --font-fancy: 'Playfair Display', serif;
+    --font-body: 'Lato', sans-serif;
+    --shadow: #EA738D;          /* bubblegum pink */
+}
+
+/* Sweetheart Bliss */
+.theme-sweetheart-bliss {
+    --bg-primary: #E7E8D1;      /* light beige */
+    --bg-secondary: #ffffff;
+    --text-primary: #392F5A;    /* dark purple */
+    --text-accent: #FF677D;     /* coral pink */
+    --border-color: #FFB3BA;    /* light pink */
+    --btn-bg: #FF677D;          /* coral pink */
+    --btn-hover-bg: #FF8A9B;    /* lighter coral */
+    --font-fancy: 'Dancing Script', cursive;
+    --font-body: 'Montserrat', sans-serif;
+    --shadow: #FF677D;          /* coral pink */
+}
+
+/* Rose Petal */
+.theme-rose-petal {
+    --bg-primary: #FCF6F5;      /* off-white */
+    --bg-secondary: #ffffff;
+    --text-primary: #6B1A22;    /* dark red */
+    --text-accent: #990011;     /* deeper red */
+    --border-color: #F7C5CC;    /* light pink */
+    --btn-bg: #CC313D;          /* bright red */
+    --btn-hover-bg: #990011;    /* deeper red */
+    --font-fancy: 'Merriweather', serif;
+    --font-body: 'Georgia', serif;
+    --shadow: #CC313D;          /* bright red */
+}
+
+/* Enchanted Evening */
+.theme-enchanted-evening {
+    --bg-primary: #1E2761;      /* midnight blue */
+    --bg-secondary: #2a3b90;    /* lighter midnight */
+    --text-primary: #CBEEF3;    /* light blue */
+    --text-accent: #F49CBB;     /* pink */
+    --border-color: #408EC6;    /* royal blue */
+    --btn-bg: #F49CBB;          /* pink */
+    --btn-hover-bg: #F07DA4;    /* darker pink */
+    --font-fancy: 'Lobster', cursive;
+    --font-body: 'Roboto', sans-serif;
+    --shadow: #F49CBB;          /* pink */
+}
+
+/* Mint to Be */
+.theme-mint-to-be {
+    --bg-primary: #E7E8D1;      /* light beige */
+    --bg-secondary: #ffffff;
+    --text-primary: #B85042;    /* terracotta */
+    --text-accent: #97BC62;     /* moss green */
+    --border-color: #A7BEAE;    /* muted teal */
+    --btn-bg: #A7BEAE;          /* muted teal */
+    --btn-hover-bg: #8EAD9E;    /* darker teal */
+    --font-fancy: 'Amatic SC', cursive;
+    --font-body: 'Nunito', sans-serif;
+    --shadow: #B85042;          /* terracotta */
+}
+
+/* Coffee & Comfort */
+.theme-coffee-comfort {
+    --bg-primary: #F5F5DC;      /* beige */
+    --bg-secondary: #ffffff;
+    --text-primary: #4A2C2A;    /* dark coffee brown */
+    --text-accent: #A0522D;     /* sienna */
+    --border-color: #D2B48C;    /* tan */
+    --btn-bg: #A0522D;          /* sienna */
+    --btn-hover-bg: #C66C40;    /* lighter sienna */
+    --font-fancy: 'Cutive Mono', monospace;
+    --font-body: 'Source Sans Pro', sans-serif;
+    --shadow: #E67E22;          /* carrot orange */
+}
+
+/* Ocean Breeze */
+.theme-ocean-breeze {
+    --bg-primary: #F4E8D1;      /* sandy beige */
+    --bg-secondary: #ffffff;
+    --text-primary: #003B46;    /* deep sea blue */
+    --text-accent: #5D9CEC;     /* clear water blue */
+    --border-color: #87CEEB;    /* sky blue */
+    --btn-bg: #FFD700;          /* sunny yellow */
+    --btn-hover-bg: #FFC700;    /* darker yellow */
+    --font-fancy: 'Righteous', cursive;
+    --font-body: 'Open Sans', sans-serif;
+    --shadow: #5D9CEC;          /* clear water blue */
+}
+
+/* City Noir */
+.theme-city-noir {
+    --bg-primary: #2C2C2C;      /* jet black */
+    --bg-secondary: #414141;    /* dark grey */
+    --text-primary: #EAEAEA;    /* off-white */
+    --text-accent: #D4AF37;     /* metallic gold */
+    --border-color: #5A5A5A;
+    --btn-bg: #990000;          /* crimson */
+    --btn-hover-bg: #B30000;    /* lighter crimson */
+    --font-fancy: 'Cinzel', serif;
+    --font-body: 'Josefin Sans', sans-serif;
+    --shadow: #D4AF37;          /* metallic gold */
+}
+
+/* Park Picnic */
+.theme-park-picnic {
+    --bg-primary: #FAF3E0;      /* antique white */
+    --bg-secondary: #ffffff;
+    --text-primary: #013220;    /* forest green */
+    --text-accent: #D2042D;     /* picnic red */
+    --border-color: #BDECB6;    /* light green */
+    --btn-bg: #D2042D;          /* picnic red */
+    --btn-hover-bg: #A90324;    /* darker red */
+    --font-fancy: 'Patrick Hand', cursive;
+    --font-body: 'Quicksand', sans-serif;
+    --shadow: #D2042D;          /* picnic red */
+}
+
+/* Artistic Aura */
+.theme-artistic-aura {
+    --bg-primary: #E4E0DB;      /* light gray */
+    --bg-secondary: #ffffff;
+    --text-primary: #415A77;    /* dark slate gray */
+    --text-accent: #E07A5F;     /* terracotta */
+    --border-color: #BDBDBD;    /* gray */
+    --btn-bg: #778DA9;          /* cadet blue */
+    --btn-hover-bg: #5A6F8F;    /* darker blue */
+    --font-fancy: 'Architects Daughter', cursive;
+    --font-body: 'Work Sans', sans-serif;
+    --shadow: #E07A5F;          /* terracotta */
+}
+
+.font-fancy {
+  font-family: var(--font-fancy);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+.solid-shadow {
+  transition: all 0.2s ease-in-out;
+  box-shadow: 8px 8px 0px 0px var(--shadow);
+}
+
+.solid-shadow:hover {
+  box-shadow: 0px 0px 0px 0px var(--shadow);
+  transform: translate(8px, 8px);
 }
 
 /* Applying theme variables */
@@ -657,6 +793,203 @@ body {
         inset 0 1px 0 rgba(255, 255, 255, 0.3),
         inset 0 -1px 0 rgba(0, 0, 0, 0.1);
     transform: translateY(0);
+}
+
+/* --- Custom Scrollbar for Theme Selector --- */
+.theme-selector-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.theme-selector-scrollbar::-webkit-scrollbar-track {
+  background: #f1f5f9; /* bg-slate-100 */
+  border-radius: 10px;
+}
+
+.theme-selector-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #94a3b8; /* bg-slate-400 */
+  border-radius: 10px;
+  border: 2px solid #f1f5f9; /* bg-slate-100 */
+}
+
+.theme-selector-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #64748b; /* bg-slate-500 */
+}
+
+/* For Firefox */
+.theme-selector-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #94a3b8 #f1f5f9; /* thumb and track color */
+}
+
+/* === Button System === */
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  border: 2px solid transparent;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  line-height: 1.25;
+  position: relative;
+  overflow: hidden;
+  text-transform: none;
+  letter-spacing: 0.025em;
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn:focus {
+  outline: 2px solid var(--text-accent);
+  outline-offset: 2px;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn:disabled:hover {
+  transform: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Primary Button */
+.btn-primary {
+  background: linear-gradient(135deg, var(--btn-bg), var(--btn-hover-bg));
+  color: white;
+  border-color: var(--btn-bg);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--btn-hover-bg), var(--btn-bg));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Accept Button */
+.btn-accept {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  border-color: #10b981;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.btn-accept:hover:not(:disabled) {
+  background: linear-gradient(135deg, #059669, #047857);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+}
+
+.btn-accept:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+/* Decline Button */
+.btn-decline {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  border-color: #ef4444;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.btn-decline:hover:not(:disabled) {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4);
+}
+
+.btn-decline:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+/* Secondary Button */
+.btn-secondary {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: var(--bg-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  border-color: var(--text-accent);
+}
+
+.btn-secondary:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Button sizes */
+.btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  border-radius: 0.5rem;
+}
+
+.btn-lg {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+  border-radius: 1rem;
+}
+
+.btn-xl {
+  padding: 1.25rem 2.5rem;
+  font-size: 1.25rem;
+  border-radius: 1.25rem;
+}
+
+/* Full width button */
+.btn-full {
+  width: 100%;
+}
+
+/* Button icon spacing */
+.btn svg {
+  flex-shrink: 0;
+}
+
+/* Button loading state */
+.btn-loading {
+  position: relative;
+  color: transparent;
+}
+
+.btn-loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1rem;
+  height: 1rem;
+  margin: -0.5rem 0 0 -0.5rem;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* === Enhanced existing styles === */
